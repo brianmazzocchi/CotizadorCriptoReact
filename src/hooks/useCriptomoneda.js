@@ -22,29 +22,31 @@ const Select = styled.select`
     font-size: 1.2rem;
 `;
 
-const useMoneda = (label, stateInicial, opciones) => {
+const useCriptomoneda = (label, stateInicial, opciones) => {
     //LO que esta aca es el state del custom hook
     const [state, actualizarState] = useState(stateInicial);
     
     //LO que esta aca adento es lo que se muestra en pantalla
-    const Seleccionar = () => (
+    const SelectCripto = () => (
         <Fragment>
             <Label>{label}</Label>
             <Select
                 onChange= { e => actualizarState(e.target.value)}
                 value={state}
             >
+                
                 <option value="">- Seleccione -</option>
-                {opciones.map(opcion => (
-                    <option key={opcion.codigo} value={opcion.codigo}>{opcion.nombre}</option>
+                {opciones.map (opcion => (
+                    <option key={opcion.CoinInfo.Id} value={opcion.CoinInfo.Name}>{opcion.CoinInfo.FullName}</option>
 
-                ))}
+                ))};
+                
             </Select>
         </Fragment>
     );
 
     //Retornar state, interfaz y fn que modifica el state.
-        return [state, Seleccionar, actualizarState];
+        return [state, SelectCripto, actualizarState];
 }
 
-export default useMoneda;
+export default useCriptomoneda;
